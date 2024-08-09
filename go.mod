@@ -1,4 +1,4 @@
-module github.com/mateothegreat/util
+module github.com/mateothegreat/go-util
 
 go 1.22.0
 
