@@ -3,6 +3,7 @@ package validation
 import (
 	"fmt"
 	"reflect"
+	"strconv"
 )
 
 func ValidateStructFields(v interface{}, path string) ([]string, error) {
@@ -51,11 +52,14 @@ func IsStructFieldEmpty(v reflect.Value) bool {
 	case reflect.Bool:
 		return !v.Bool()
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
-		return v.Int() == 0
+		_, err := strconv.ParseInt(v.String(), 10, 64)
+		return err != nil
 	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr:
-		return v.Uint() == 0
+		_, err := strconv.ParseUint(v.String(), 10, 64)
+		return err != nil
 	case reflect.Float32, reflect.Float64:
-		return v.Float() == 0
+		_, err := strconv.ParseFloat(v.String(), 64)
+		return err != nil
 	case reflect.Interface, reflect.Ptr:
 		return v.IsNil()
 	case reflect.Array, reflect.Slice, reflect.Map:
