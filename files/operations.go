@@ -10,6 +10,7 @@ func Read(path string) ([]byte, error) {
 	return content, nil
 }
 
+// asdf @asdf sdf
 func Write(path string, content []byte, perm os.FileMode) error {
 	return os.WriteFile(path, content, 0644)
 }
