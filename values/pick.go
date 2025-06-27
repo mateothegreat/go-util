@@ -1,5 +1,7 @@
 package values
 
+import "time"
+
 // Pick returns the value of the key in the map if it exists. Otherwise, it
 // returns the default value.
 func Pick[K comparable, V any](m map[K]V, key K, defaultValue V) V {
@@ -71,6 +73,12 @@ func IsZero[T any](v T) bool {
 		return ptr == nil || *ptr == 0
 	case *bool:
 		return ptr == nil || *ptr == false
+	case *time.Time:
+		return ptr == nil || ptr.IsZero()
+	case *time.Duration:
+		return ptr == nil || *ptr == 0
+	case *struct{}:
+		return ptr == nil
 
 	// Handle non-pointer types
 	case string:
@@ -83,6 +91,12 @@ func IsZero[T any](v T) bool {
 		return ptr == 0
 	case bool:
 		return ptr == false
+	case time.Time:
+		return ptr.IsZero()
+	case time.Duration:
+		return ptr == 0
+	case struct{}:
+		return true
 
 	// For unknown types, compare with zero value using comparable constraint
 	default:
