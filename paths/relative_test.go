@@ -6,11 +6,11 @@ import (
 	"path"
 	"testing"
 
-	"gotest.tools/v3/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestFindProjectRoot(t *testing.T) {
-	root, err := FindProjectRoot("go.mod")
+	root, err := FindRootByMarker("go.mod")
 	if err != nil {
 		t.Fatal(err)
 	}

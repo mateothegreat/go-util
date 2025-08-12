@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 )
 
-// FindProjectRoot walks up from the current working directory to locate the root of the project,
+// FindRootByMarker walks up from the current working directory to locate the root of the project,
 // identified by a marker file or directory (e.g., "go.mod" or ".git").
 //
 // Arguments:
@@ -17,12 +17,12 @@ import (
 //
 // Example:
 //
-//	root, err := paths.FindProjectRoot("go.mod")
+//	root, err := paths.FindRootByMarker("go.mod")
 //	if err != nil {
 //		log.Fatal(err) // project root not found, or error getting current working directory
 //	}
 //	println(root) // prints the absolute path to the project root
-func FindProjectRoot(markerFile string) (string, error) {
+func FindRootByMarker(markerFile string) (string, error) {
 	dir, err := os.Getwd()
 	if err != nil {
 		return "", err
