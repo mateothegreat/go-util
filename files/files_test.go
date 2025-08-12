@@ -9,7 +9,7 @@ import (
 
 func TestExpandPath(t *testing.T) {
 	path := "~/test"
-	expanded, err := paths.ExpandPath(path)
+	expanded, err := paths.Expand(path)
 	assert.Equal(t, "/Users/mateo/test", expanded)
 	assert.NoError(t, err)
 }

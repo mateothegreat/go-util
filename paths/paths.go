@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-// ExpandPath expands a path such as ~/workspace/foo/bar to /Users/mateo/workspace/foo/bar.
+// Expand expands a path such as ~/workspace/foo/bar to /Users/mateo/workspace/foo/bar.
 //
 // Arguments:
 //   - path: the path to expand
@@ -16,7 +16,7 @@ import (
 // Returns:
 //   - The expanded path
 //   - An error if there is an error expanding the path
-func ExpandPath(path string) (string, error) {
+func Expand(path string) (string, error) {
 	var err error
 	if strings.HasPrefix(path, "~") {
 		home, err := os.UserHomeDir()
@@ -37,7 +37,7 @@ func ExpandPath(path string) (string, error) {
 	return abs, nil
 }
 
-// IsSubPath checks if a path is a subpath of another path.
+// IsSub checks if a path is a subpath of another path.
 //
 // Arguments:
 //   - path: the path to check
@@ -45,7 +45,7 @@ func ExpandPath(path string) (string, error) {
 //
 // Returns:
 //   - True if the path is a subpath of the base path, false otherwise
-func IsSubPath(path, basePath string) bool {
+func IsSub(path, basePath string) bool {
 	rel, err := filepath.Rel(basePath, path)
 	if err != nil {
 		return false
